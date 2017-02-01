@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# allow all docker hosts to our X server
+xhost +local:
+
+# start docker and emacs
+docker run \
+      -d \
+      -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+      -v ${PWD}/project:/project \
+      -e DISPLAY=unix${DISPLAY} \
+      --device /dev/snd \
+      --name docker-emacs \
+      cmiles74/emacs-js-clojure
+
+docker exec docker-emacs /developer/bin/start-terminal
+

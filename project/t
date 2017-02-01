@@ -1,0 +1,120 @@
+ST(1)                      General Commands Manual                      ST(1)
+
+NNAAMMEE
+       st - simple terminal
+
+SSYYNNOOPPSSIISS
+       sstt [--aaiivv] [--cc _c_l_a_s_s] [--ff _f_o_n_t] [--gg _g_e_o_m_e_t_r_y] [--nn _n_a_m_e] [--oo _i_o_f_i_l_e] [--TT
+       _t_i_t_l_e] [--tt  _t_i_t_l_e]  [--ll  _l_i_n_e]  [--ww  _w_i_n_d_o_w_i_d]  [[--ee]  _c_o_m_m_a_n_d  [_a_r_g_u_-
+       _m_e_n_t_s...]]
+
+       sstt [--aaiivv] [--cc _c_l_a_s_s] [--ff _f_o_n_t] [--gg _g_e_o_m_e_t_r_y] [--nn _n_a_m_e] [--oo _i_o_f_i_l_e] [--TT
+       _t_i_t_l_e] [--tt _t_i_t_l_e] [--ww _w_i_n_d_o_w_i_d] -l _l_i_n_e [_s_t_t_y___a_r_g_s...]
+
+DDEESSCCRRIIPPTTIIOONN
+       sstt is a simple terminal emulator.
+
+OOPPTTIIOONNSS
+       --aa     disable alternate screens in terminal
+
+       --cc _c_l_a_s_s
+              defines the window class (default $TERM).
+
+       --ff _f_o_n_t
+              defines the _f_o_n_t to use when st is run.
+
+       --gg _g_e_o_m_e_t_r_y
+              defines   the   X11   geometry    string.     The    form    is
+              [=][<cols>{xX}<rows>][{+-}<xoffset>{+-}<yoffset>].          See
+              XXPPaarrsseeGGeeoommeettrryy(3) for further details.
+
+       --ii     will fixate the position given with the -g option.
+
+       --nn _n_a_m_e
+              defines the window instance name (default $TERM).
+
+       --oo _i_o_f_i_l_e
+              writes all the I/O to _i_o_f_i_l_e_.   This  feature  is  useful  when
+              recording st sessions. A value of "-" means standard output.
+
+       --TT _t_i_t_l_e
+              defines the window title (default 'st').
+
+       --tt _t_i_t_l_e
+              defines the window title (default 'st').
+
+       --ww _w_i_n_d_o_w_i_d
+              embeds st within the window identified by _w_i_n_d_o_w_i_d
+
+       --ll _l_i_n_e
+              use  a tty _l_i_n_e instead of a pseudo terminal.  _l_i_n_e should be a
+              (pseudo-)serial device (e.g. /dev/ttySO  on  Linux  for  serial
+              port  0).  When this flag is given remaining arguments are used
+              as flags for ssttttyy((11))..  By default  st  initializes  the  serial
+              line  to  8  bits, no parity, 1 stop bit and a 38400 baud rate.
+              The speed is set by appending it as last argument (e.g. 'st  -l
+              115200').  Arguments  before the last one are ssttttyy((11)) flags. If
+              you want to set odd parity on 115200 baud use for  example  'st
+              -l  parenb  parodd 115200'. Set the number of bits by using for
+              example 'st -l cs7 115200'. See ssttttyy((11)) for more arguments  and
+              cases.
+
+       --vv     prints version information to stderr, then exits.
+
+       --ee _c_o_m_m_a_n_d [[ _a_r_g_u_m_e_n_t_s ...... ]]
+              st  executes  _c_o_m_m_a_n_d instead of the shell.  If this is used it
+              mmuusstt bbee tthhee llaasstt ooppttiioonn on the command  line,  as  in  xterm  /
+              rxvt.   This  option  is only intended for compability, and all
+              the remaining arguments are used as a command even without it.
+
+SSHHOORRTTCCUUTTSS
+       BBrreeaakk  Send a break in the serial line.  Break key is obtained  in  PC
+              keyboards pressing at the same time control and pause.
+
+       CCttrrll--PPrriinntt SSccrreeeenn
+              Toggle if st should print to the _i_o_f_i_l_e_.
+
+       SShhiifftt--PPrriinntt SSccrreeeenn
+              Print the full screen to the _i_o_f_i_l_e_.
+
+       PPrriinntt SSccrreeeenn
+              Print the selection to the _i_o_f_i_l_e_.
+
+       AAlltt--SShhiifftt--PPaaggee UUpp
+              Increase font size.
+
+       AAlltt--SShhiifftt--PPaaggee DDoowwnn
+              Decrease font size.
+
+       AAlltt--SShhiifftt--HHoommee
+              Reset to default font size.
+
+       SShhiifftt--IInnsseerrtt
+              Paste from primary selection (middle mouse button).
+
+       AAlltt--SShhiifftt--IInnsseerrtt
+              Paste from clipboard selection.
+
+       AAlltt--SShhiifftt--cc
+              Copy the selected text to the clipboard selection.
+
+       AAlltt--SShhiifftt--vv
+              Paste from the clipboard selection.
+
+CCUUSSTTOOMMIIZZAATTIIOONN
+       sstt  can  be customized by creating a custom config.h and (re)compiling
+       the source code. This keeps it fast, secure and simple.
+
+AAUUTTHHOORRSS
+       See the LICENSE file for the authors.
+
+LLIICCEENNSSEE
+       See the LICENSE file for the terms of redistribution.
+
+SSEEEE AALLSSOO
+       ttaabbbbeedd(1), uuttmmpp(1), ssttttyy(1)
+
+BBUUGGSS
+       See the TODO file in the distribution.
+
+                                    st-0.7                              ST(1)
