@@ -1,17 +1,20 @@
 from dock0/arch:latest
 
 # update our Arch installation
-run pacman-key --init
-run pacman-key --populate archlinux
-run pacman-key --refresh-keys
-run pacman -Syu --noconfirm
-run pacman-db-upgrade
+# run pacman-key --init
+# run pacman-key --populate archlinux
+# run pacman-key --refresh-keys
+# run pacman -Syu --noconfirm
+# run pacman-db-upgrade
 
 # install Java
 run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb
 
 # install npm
 run pacman -Syqu --noconfirm npm
+
+# install httpie
+run pacman -Syqu --noconfirm httpie
 
 # setup our developer user
 workdir /root
