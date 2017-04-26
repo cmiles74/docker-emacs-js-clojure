@@ -10,11 +10,11 @@ from dock0/arch:latest
 # install Java
 run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb
 
-# install npm
-run pacman -Syqu --noconfirm npm
-
 # install httpie
 run pacman -Syqu --noconfirm httpie
+
+# install node and npm
+run pacman -Syqu --noconfirm nodejs npm phantomjs
 
 # setup our developer user
 workdir /root
@@ -23,6 +23,7 @@ run useradd -u 1000 -r -g developer -d /developer -c "Software Developer" develo
 copy /developer /developer
 run chown -R developer:developer /developer
 run chmod +x /developer/bin/*
+run echo "%developer ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
 # install leiningen
 run curl -O https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
@@ -54,10 +55,32 @@ run makepkg
 user root
 run pacman -U --noconfirm *xz
 
+# build nvm aur package
+user developer
+workdir /developer
+run git clone https://aur.archlinux.org/nvm.git aur/nvm
+workdir /developer/aur/nvm
+run makepkg
+user root
+run pacman -U --noconfirm *xz
+
+# build watchman aur package
+user developer
+workdir /developer
+run git clone https://aur.archlinux.org/watchman.git aur/watchman
+workdir /developer/aur/watchman
+run makepkg
+user root
+run pacman -U --noconfirm *xz
+
 # cleanup aur packages
 user root
 workdir /developer
 run rm -rf aur
+
+# install some NPM packages
+user root
+run npm install -g gulp tern js-beautify jshint eslint babel-eslint eslint-plugin-react
 
 # install spacemacs
 user developer
@@ -67,9 +90,6 @@ run git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
 # setup leiningen
 run /sbin/lein --version
 
-# install some NPM packages
-run export PATH=$PATH:/developer/.npm/bin; npm install -g gulp tern js-beautify jshint eslint babel-eslint eslint-plugin-react
-
 # volume used for mounting project files
 copy project /project
 workdir /project
@@ -78,9 +98,12 @@ workdir /project
 # Environment Variables
 #
 
+# setup nvm
+run source /usr/share/nvm/init-nvm.sh
+
 # Path
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk
-ENV PATH $JAVA_HOME/bin:/developer/.npm/bin:$PATH
+ENV PATH $JAVA_HOME/bin:$PATH
 
 #
 # Ports
@@ -89,6 +112,10 @@ ENV PATH $JAVA_HOME/bin:/developer/.npm/bin:$PATH
 # BrowserSync
 expose 3000
 expose 3001
+
+# ember server
+expose 49153
+expose 4200
 
 # Web application
 expose 5000
