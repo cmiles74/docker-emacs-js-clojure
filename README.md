@@ -3,7 +3,7 @@ Emacs with Javascript and Clojure
 
 You can pull this image from Docker Hub.
 
-    docker pull cmiles74/emacs-js-clojure
+    docker pull cmiles74/docker-emacs-js-clojure
     
 This project provides a Docker image that includes a reasonably new and working
 version of Emacs, OpenJDK 8, NodeJS and NVM. I use this image for developing web
