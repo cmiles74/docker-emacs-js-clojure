@@ -7,14 +7,14 @@ from dock0/arch:latest
 # run pacman -Syu --noconfirm
 # run pacman-db-upgrade
 
-# install Java
+# install requirements
 run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb
 
 # install httpie
 run pacman -Syqu --noconfirm httpie
 
 # install node and npm
-run pacman -Syqu --noconfirm nodejs npm phantomjs
+run pacman -Syqu --noconfirm nodejs npm
 
 # setup our developer user
 workdir /root
@@ -34,7 +34,7 @@ run mv lein /sbin
 run pacman -Sqyu --noconfirm xorg-fonts-encodings xorg-font-utils git emacs
 
 # install Java
-run pacman -Sy --noconfirm jdk8-openjdk maven
+run pacman -Sy --noconfirm jdk8-openjdk java-openjfx maven
 
 # build hack aur package
 user developer
