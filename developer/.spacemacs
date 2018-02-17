@@ -217,6 +217,7 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
   (setq clojure-enable-fancify-symbols t)
+  (setq cider-lein-parameters "repl :headless :host localhost")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
