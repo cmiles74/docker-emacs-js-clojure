@@ -8,7 +8,7 @@ from dock0/arch:latest
 # run pacman-db-upgrade
 
 # install requirements
-run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb aspell_en
+run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb aspell_en gtk2
 
 # install httpie
 run pacman -Syqu --noconfirm httpie
