@@ -8,7 +8,7 @@ from dock0/arch:latest
 # run pacman-db-upgrade
 
 # install requirements
-run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb aspell-en gtk2
+run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb aspell-en gtk2 lib32-glibc
 
 # install httpie
 run pacman -Syqu --noconfirm httpie
@@ -36,10 +36,19 @@ run pacman -Sqyu --noconfirm xorg-fonts-encodings xorg-font-utils git emacs
 # install Java
 run pacman -Sy --noconfirm jdk8-openjdk java-openjfx maven
 
-# build hack aur package
+# build launch4j package
 user developer
 workdir /developer
 run mkdir aur
+run git clone https://aur.archlinux.org/launch4j.git aur/launch4j
+workdir /developer/aur/launch4j
+run makepkg
+user root
+run pacman -U --noconfirm *xz
+
+# build hack aur package
+user developer
+workdir /developer
 run git clone https://aur.archlinux.org/ttf-hack.git aur/ttf-hack
 workdir /developer/aur/ttf-hack
 run makepkg
