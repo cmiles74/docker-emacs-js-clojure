@@ -8,7 +8,7 @@ from dock0/arch:latest
 # run pacman-db-upgrade
 
 # install requirements
-run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb aspell-en gtk2 lib32-glibc
+run pacman -Syqu --noconfirm base-devel binutils tmux bash man fish powerline git openssh wget curl rxvt-unicode xorg-xrdb aspell-en gtk2 lib32-glibc bdf-unifont
 
 # install httpie
 run pacman -Syqu --noconfirm httpie
@@ -51,15 +51,6 @@ user developer
 workdir /developer
 run git clone https://aur.archlinux.org/ttf-hack.git aur/ttf-hack
 workdir /developer/aur/ttf-hack
-run makepkg
-user root
-run pacman -U --noconfirm *xz
-
-# build unifont aur package
-user developer
-workdir /developer
-run git clone https://aur.archlinux.org/ttf-unifont.git aur/ttf-unifont
-workdir /developer/aur/ttf-unifont
 run makepkg
 user root
 run pacman -U --noconfirm *xz
